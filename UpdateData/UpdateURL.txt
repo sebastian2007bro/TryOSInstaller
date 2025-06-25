@@ -1,1 +1,1 @@
-https://github.com/sebastian2007bro/TryOS/releases/tag/TryOS_0.1.0.245
+https://github.com/sebastian2007bro/TryOS/releases/download/TryOS_0.1.0.245/TryOS_0.1.0.245.zip
