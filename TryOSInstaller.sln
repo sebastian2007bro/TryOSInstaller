@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1927
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TryOSInstaller", "TryOSInstaller\TryOSInstaller.vbproj", "{5D8D30B1-34AD-4090-99BB-AC7B7C1D7195}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D8D30B1-34AD-4090-99BB-AC7B7C1D7195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8D30B1-34AD-4090-99BB-AC7B7C1D7195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8D30B1-34AD-4090-99BB-AC7B7C1D7195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8D30B1-34AD-4090-99BB-AC7B7C1D7195}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F68C6686-C6ED-44AC-B600-4256378B0422}
+	EndGlobalSection
+EndGlobal
