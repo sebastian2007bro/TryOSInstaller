@@ -12,16 +12,25 @@ Public Class Form2
 
     Public Sub GetNewstVersion()
         Try
-            WayInSetup = 1
-            ProgressBar1.Style = ProgressBarStyle.Marquee
-            Label1.Text = "Info: Getting newst version"
-            Dim VersionPlace As String = ""
-            Dim WebDownloader As New Net.WebClient
-            WebDownloader.DownloadFile("https://raw.githubusercontent.com/sebastian2007bro/TryOSInstaller/refs/heads/main/UpdateData/UpdateURL.txt", My.Application.Info.DirectoryPath & "\Version.txt")
-            VersionPlace = My.Computer.FileSystem.ReadAllText(My.Application.Info.DirectoryPath & "\Version.txt")
-            InstallPathInternet = VersionPlace
-            My.Computer.FileSystem.DeleteFile(My.Application.Info.DirectoryPath & "\Version.txt")
-            WaitPause.Start()
+            If My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath & "\InstallPathInternet.txt") Then
+                WayInSetup = 1
+                ProgressBar1.Style = ProgressBarStyle.Marquee
+                Label1.Text = "Info: Reading ""InstallPathInternet.txt"""
+                InstallPathInternet = My.Computer.FileSystem.ReadAllText(My.Application.Info.DirectoryPath & "\InstallPathInternet.txt")
+                WaitPause.Start()
+            Else
+                WayInSetup = 1
+                ProgressBar1.Style = ProgressBarStyle.Marquee
+                Label1.Text = "Info: Getting newst version"
+                Dim VersionPlace As String = ""
+                Dim WebDownloader As New Net.WebClient
+                WebDownloader.DownloadFile("https://raw.githubusercontent.com/sebastian2007bro/TryOSInstaller/refs/heads/main/UpdateData/UpdateURL.txt", My.Application.Info.DirectoryPath & "\Version.txt")
+                VersionPlace = My.Computer.FileSystem.ReadAllText(My.Application.Info.DirectoryPath & "\Version.txt")
+                InstallPathInternet = VersionPlace
+                My.Computer.FileSystem.DeleteFile(My.Application.Info.DirectoryPath & "\Version.txt")
+                WaitPause.Start()
+            End If
+
         Catch ex1 As Net.WebException
             MsgBox("I think your internet isn't working right.")
         Catch ex As Exception
@@ -65,6 +74,17 @@ Public Class Form2
         End If
     End Sub
 
+    Public Sub CloseSetupProgram(DidProgramCloseLikeNormal As Boolean, Optional ex As String = Nothing)
+        WayInSetup = 5
+        If DidProgramCloseLikeNormal = True Then
+            Label1.Text = "Info: Closing TryOS Setup"
+            WaitPause.Start()
+        ElseIf DidProgramCloseLikeNormal = False Then
+            MsgBox(ex, MsgBoxStyle.Critical)
+            End
+        End If
+    End Sub
+
     Private Sub WaitPause_Tick(sender As Object, e As EventArgs) Handles WaitPause.Tick
         If WayInSetup = 0 Then
             WaitPause.Stop()
@@ -78,6 +98,11 @@ Public Class Form2
         ElseIf WayInSetup = 3 Then
             WaitPause.Stop()
             ExtractTryOS()
+        ElseIf WayInSetup = 4 Then
+            WaitPause.Stop()
+            CloseSetupProgram(True)
+        ElseIf WayInSetup = 5 Then
+            End
         End If
     End Sub
 
