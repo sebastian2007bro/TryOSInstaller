@@ -54,8 +54,30 @@ Public Class Form2
         WayInSetup = 3
         Label1.Text = "Info: Downloading TryOS"
         Try
-            Dim WebDownloader As New Net.WebClient
-            WebDownloader.DownloadFile(InstallPathInternet, InstallPath & "\TryZip.zip")
+            If My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath & "\InternetDownloader.exe") = False Then
+                My.Computer.FileSystem.WriteAllBytes(My.Application.Info.DirectoryPath & "\InternetDownloader.exe", My.Resources.InternetDownloader, False)
+            End If
+
+            If My.Computer.FileSystem.FileExists(My.Application.Info.DirectoryPath & "\TryZip.zip") Then
+                My.Computer.FileSystem.DeleteFile(My.Application.Info.DirectoryPath & "\TryZip.zip")
+            End If
+
+            Dim psi As New ProcessStartInfo(My.Application.Info.DirectoryPath & "\InternetDownloader.exe", "/Address:" & InstallPathInternet & " /fileName:" & My.Application.Info.DirectoryPath & "\TryZip.zip")
+            psi.RedirectStandardOutput = True
+            psi.UseShellExecute = False
+            psi.CreateNoWindow = True
+            Dim process As Process = Process.Start(psi)
+
+            Dim output As String = process.StandardOutput.ReadToEnd()
+            process.WaitForExit()
+
+            If output.Contains("1") Then
+            Else
+
+            End If
+
+            'Dim WebDownloader As New Net.WebClient
+            'WebDownloader.DownloadFile(InstallPathInternet, InstallPath & "\TryZip.zip")
             WaitPause.Start()
         Catch ex As Exception
 

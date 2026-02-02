@@ -3,3 +3,6 @@
 .vs/TryOSInstaller/v15/Server/sqlite3/storage.ide-shm
 .vs/TryOSInstaller/v15/Server/sqlite3/storage.ide-wal
 TryOSInstaller/obj/Debug/TempPE/My Project.Resources.Designer.vb.dll
+/TryOSInstaller/obj
+/TryOSInstaller/bin
+/.vs
